@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Sensibilidad</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', sans-serif;
+        }
+        body {
+            text-align: center;
+            background: black;
+            color: yellow;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 10px yellow;
+            border: 2px solid yellow;
+        }
+        h1 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            text-shadow: 0 0 5px yellow;
+        }
+        select, button {
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            background: yellow;
+            color: black;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+            width: 100%;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: gold;
+        }
+        .resultado {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Generador de Sensibilidad 🎯</h1>
+        <select id="modeloSamsung">
+            <option value="Galaxy A05">Samsung Galaxy A05</option>
+            <option value="Galaxy A05s">Samsung Galaxy A05s</option>
+            <option value="Galaxy A14 4G">Samsung Galaxy A14 4G</option>
+            <option value="Galaxy A14 5G">Samsung Galaxy A14 5G</option>
+            <option value="Galaxy A15 4G">Samsung Galaxy A15 4G</option>
+            <option value="Galaxy A15 5G">Samsung Galaxy A15 5G</option>
+            <option value="Galaxy A34">Samsung Galaxy A34</option>
+            <option value="Galaxy A35 5G">Samsung Galaxy A35 5G</option>
+            <option value="Galaxy A54">Samsung Galaxy A54</option>
+            <option value="Galaxy A55 5G">Samsung Galaxy A55 5G</option>
+            <option value="Galaxy A10">Samsung Galaxy A10</option>
+            <option value="Galaxy A20">Samsung Galaxy A20</option>
+            <option value="Galaxy A30">Samsung Galaxy A30</option>
+            <option value="Galaxy A50">Samsung Galaxy A50</option>
+            <option value="Galaxy A70">Samsung Galaxy A70</option>
+            <option value="Galaxy S10">Samsung Galaxy S10</option>
+            <option value="Galaxy S20">Samsung Galaxy S20</option>
+            <option value="Galaxy S21">Samsung Galaxy S21</option>
+            <option value="Galaxy S22">Samsung Galaxy S22</option>
+            <option value="Galaxy S23">Samsung Galaxy S23</option>
+            <option value="Galaxy Note 10">Samsung Galaxy Note 10</option>
+            <option value="Galaxy Note 20">Samsung Galaxy Note 20</option>
+        </select>
+        <button onclick="generarSensibilidad()">Generar Sensibilidad</button>
+        <div class="resultado" id="resultado"></div>
+    </div>
+
+    <script>
+        function generarSensibilidad() {
+            let modelo = document.getElementById("modeloSamsung").value;
+            let dpi = Math.floor(Math.random() * (800 - 300) + 300);
+            let general = Math.floor(Math.random() * (200 - 100) + 100);
+            let miraRedDot = Math.floor(Math.random() * (200 - 100) + 100);
+            let mira2x = Math.floor(Math.random() * (200 - 100) + 100);
+            let mira4x = Math.floor(Math.random() * (200 - 100) + 100);
+            let miraAWM = Math.floor(Math.random() * (200 - 100) + 100);
+            let miraFree = Math.floor(Math.random() * (200 - 100) + 100);
+
+            let resultado = `
+                📱 <b>Modelo:</b> ${modelo} <br>
+                📌 <b>DPI:</b> ${dpi} <br>
+                🎯 <b>General:</b> ${general} <br>
+                🔴 <b>Red Dot:</b> ${miraRedDot} <br>
+                🔍 <b>Mira 2X:</b> ${mira2x} <br>
+                🔭 <b>Mira 4X:</b> ${mira4x} <br>
+                🎯 <b>AWM:</b> ${miraAWM} <br>
+                🆓 <b>Mira Libre:</b> ${miraFree}
+            `;
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+    </script>
+</body>
+</html>
