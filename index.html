@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprar Monedas TikTok</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            color: #fff;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        /* Fondo animado borroso */
+        .background {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #ff0080, #ffb6c1, #ff1493, #800080);
+            background-size: 400% 400%;
+            animation: gradientBG 6s infinite alternate;
+            filter: blur(10px);
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .container {
+            position: relative;
+            margin-top: 30px;
+            padding: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 80%;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            color: white;
+            background-color: #ff1493;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d11580;
+        }
+
+        .loading, .success, .searching {
+            display: none;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .loading {
+            color: orange;
+        }
+
+        .searching {
+            color: yellow;
+        }
+
+        .success {
+            color: lightgreen;
+        }
+
+        .payment-container {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            margin: auto;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            margin-top: 15px;
+            color: black;
+        }
+
+        .card-number {
+            font-size: 20px;
+            letter-spacing: 2px;
+        }
+
+        .card-expiry {
+            font-size: 16px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <h1>💎 Comprar Monedas de TikTok con un 80% de descuento  💎</h1>
+        <p>Ingresa tu usuario de TikTok:</p>
+        <input type="text" id="username" placeholder="@usuario">
+        <p>Selecciona la cantidad:</p>
+
+        <button class="btn" onclick="comprar(5, 0.35)">5 monedas - $0.35</button>
+        <button class="btn" onclick="comprar(70, 4.79)">70 monedas - $4.79</button>
+        <button class="btn" onclick="comprar(350, 23.93)">350 monedas - $23.93</button>
+        <button class="btn" onclick="comprar(700, 47.87)">700 monedas - $47.87</button>
+        <button class="btn" onclick="comprar(1400, 95.75)">1400 monedas - $95.75</button>
+        <button class="btn" onclick="comprar(3500, 239.37)">3500 monedas - $239.37</button>
+        <button class="btn" onclick="comprar(7000, 478.73)">7000 monedas - $478.73</button>
+        <button class="btn" onclick="comprar(17500, 1196.81)">17500 monedas - $1,196.81</button>
+
+        <p class="searching">🔍 Buscando usuario...</p>
+        <p class="success">✅ ¡Usuario encontrado! Procesando compra...</p>
+        <p class="loading">⏳ Procesando pago...</p>
+
+        <div class="payment-container" id="payment-container">
+            <h2>💳 Tarjeta de Pago</h2>
+            <div class="card">
+                <p class="card-number">4147 **** **** 5678</p>
+                <p class="card-expiry">Exp: 12/28</p>
+            </div>
+            <input type="text" placeholder="Nombre en la tarjeta">
+            <input type="text" placeholder="Código CVV">
+            <button class="btn" onclick="procesarPago()">Pagar</button>
+        </div>
+    </div>
+
+    <script>
+        let username = "";
+
+        function comprar(monedas, precio) {
+            username = document.getElementById("username").value.trim();
+            if (username === "") {
+                alert("Por favor, ingresa un usuario de TikTok.");
+                return;
+            }
+
+            document.querySelector(".searching").style.display = "block";
+            document.querySelector(".success").style.display = "none";
+            document.getElementById("payment-container").style.display = "none";
+
+            setTimeout(() => {
+                document.querySelector(".searching").style.display = "none";
+                document.querySelector(".success").style.display = "block";
+
+                setTimeout(() => {
+                    document.querySelector(".success").style.display = "none";
+                    document.getElementById("payment-container").style.display = "block";
+                }, 2000);
+            }, 3000);
+        }
+
+        function procesarPago() {
+            document.getElementById("payment-container").style.display = "none";
+            document.querySelector(".loading").style.display = "block";
+            document.querySelector(".success").style.display = "none";
+
+            setTimeout(() => {
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector(".success").textContent = "✅ ¡Pago exitoso! entrega en 1 hora.";
+                document.querySelector(".success").style.display = "block";
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
