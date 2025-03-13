@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mensajería</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #222;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        input, button {
+            width: 90%;
+            max-width: 400px;
+            padding: 12px;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            display: block;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #messages {
+            max-height: 60vh;
+            overflow-y: auto;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+        }
+        #chatContainer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h2>Iniciar Sesión</h2>
+    <input type="tel" id="phone" placeholder="Número de Teléfono">
+    <button onclick="login()">Entrar</button>
+
+    <div id="chatContainer">
+        <h2>Chat</h2>
+        <div id="messages"></div>
+        <input type="text" id="messageInput" placeholder="Escribe un mensaje">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCQxMQLTL2Hn5mrcMuFUu9d5Y_NYPKUHcg",
+            authDomain: "chatappg-1efcd.firebaseapp.com",
+            databaseURL: "https://chatappg-1efcd-default-rtdb.firebaseio.com",
+            projectId: "chatappg-1efcd",
+            storageBucket: "chatappg-1efcd.appspot.com",
+            messagingSenderId: "185024395898",
+            appId: "1:185024395898:web:0bb32b4a6c7789471719c3"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        let phoneNumber = "";
+
+        function login() {
+            phoneNumber = document.getElementById("phone").value;
+            if (phoneNumber) {
+                document.getElementById("chatContainer").style.display = "block";
+                loadMessages();
+            }
+        }
+
+        function sendMessage() {
+            const message = document.getElementById("messageInput").value;
+            if (message) {
+                db.ref("messages").push({
+                    sender: phoneNumber,
+                    text: message
+                });
+                document.getElementById("messageInput").value = "";
+            }
+        }
+
+        function loadMessages() {
+            db.ref("messages").on("child_added", snapshot => {
+                const msg = snapshot.val();
+                const msgElement = document.createElement("p");
+                msgElement.textContent = `${msg.sender}: ${msg.text}`;
+                document.getElementById("messages").appendChild(msgElement);
+            });
+        }
+    </script>
+</body>
+</html>
