@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Dieta Saludable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            color: #333;
+            text-align: center;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .container {
+            width: 90%;
+            max-width: 400px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            color: #27ae60;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .day {
+            display: none;
+            margin-top: 15px;
+            padding: 10px;
+            border-left: 5px solid #27ae60;
+            background: #e8f5e9;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .day ul {
+            list-style: none;
+            padding: 0;
+        }
+        .day ul li {
+            background: white;
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Guía de Dieta</h1>
+        <label for="select-day">Selecciona un día:</label>
+        <select id="select-day" onchange="showDay()">
+            <option value="">-- Seleccionar --</option>
+            <option value="lunes">Lunes</option>
+            <option value="martes">Martes</option>
+            <option value="miercoles">Miércoles</option>
+            <option value="jueves">Jueves</option>
+            <option value="viernes">Viernes</option>
+            <option value="sabado">Sábado</option>
+            <option value="domingo">Domingo</option>
+        </select>
+
+        <div id="lunes" class="day">
+            <h2>Lunes</h2>
+            <ul>
+                <li>Desayuno: Avena con plátano y miel</li>
+                <li>Almuerzo: Pechuga de pollo con ensalada</li>
+                <li>Cena: Sopa de verduras</li>
+            </ul>
+        </div>
+
+        <div id="martes" class="day">
+            <h2>Martes</h2>
+            <ul>
+                <li>Desayuno: Yogur con frutas y granola</li>
+                <li>Almuerzo: Pescado a la plancha con arroz integral</li>
+                <li>Cena: Omelette con espinacas</li>
+            </ul>
+        </div>
+
+        <div id="miercoles" class="day">
+            <h2>Miércoles</h2>
+            <ul>
+                <li>Desayuno: Pan integral con aguacate</li>
+                <li>Almuerzo: Ensalada de quinoa con pollo</li>
+                <li>Cena: Crema de calabaza</li>
+            </ul>
+        </div>
+
+        <div id="jueves" class="day">
+            <h2>Jueves</h2>
+            <ul>
+                <li>Desayuno: Batido de fresas y almendras</li>
+                <li>Almuerzo: Pasta integral con vegetales</li>
+                <li>Cena: Sándwich de atún con lechuga</li>
+            </ul>
+        </div>
+
+        <div id="viernes" class="day">
+            <h2>Viernes</h2>
+            <ul>
+                <li>Desayuno: Omelette con champiñones</li>
+                <li>Almuerzo: Filete de salmón con arroz</li>
+                <li>Cena: Ensalada de atún con aguacate</li>
+            </ul>
+        </div>
+
+        <div id="sabado" class="day">
+            <h2>Sábado</h2>
+            <ul>
+                <li>Desayuno: Panqueques de avena con miel</li>
+                <li>Almuerzo: Pechuga de pavo con ensalada</li>
+                <li>Cena: Yogur natural con nueces</li>
+            </ul>
+        </div>
+
+        <div id="domingo" class="day">
+            <h2>Domingo</h2>
+            <ul>
+                <li>Desayuno: Frutas frescas con yogur</li>
+                <li>Almuerzo: Pollo asado con verduras al horno</li>
+                <li>Cena: Sopa de lentejas</li>
+            </ul>
+        </div>
+
+        <footer>
+            Create for Gerardo Villa Ruiz | © 2025
+        </footer>
+    </div>
+
+    <script>
+        function showDay() {
+            let days = document.querySelectorAll('.day');
+            days.forEach(day => day.style.display = 'none');
+
+            let selectedDay = document.getElementById(document.getElementById('select-day').value);
+            if (selectedDay) {
+                selectedDay.style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
